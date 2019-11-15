@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Array Demo</title>
+</head>
+<body>
+
+<p>
+
+</p>
+<input type="text" id="search">
+<button>Run It!</button>
+
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    var dinosaurs = ["diplodocus", "Barney", "velociraptor", "micropachycephalosaurus"];
+
+    function useComparator() {
+        dinosaurs.sort(compareDinosaurs);
+
+        $("p").text(dinosaurs.join(" /// "));
+    }
+
+
+    function compareDinosaurs(leftDino, rightDino)
+    {
+        if (leftDino.length < rightDino.length) {
+            return 1;
+        } else if (rightDino.length < leftDino.length) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+
+    function bubbleSort() {
+        var isSorted = false;
+
+        while (!isSorted) {
+            isSorted = true;
+
+            for (var index = 0; index < dinosaurs.length - 1; index++){
+                var leftDino = dinosaurs[index];
+                var rightDino = dinosaurs[index + 1];
+
+                if (leftDino.length < rightDino.length) {
+                    dinosaurs[index] = rightDino;
+                    dinosaurs[index + 1] = leftDino;
+                    isSorted = false;
+                }
+            }
+        }
+
+        $("p").text(dinosaurs.join(" @@@ "));
+    }
+
+    function alterInPlace(searchTerm) {
+        for(var index = 0; index < dinosaurs.length; index++) {
+            var dino = dinosaurs[index];
+
+            var position = dino.indexOf(searchTerm);
+
+            if (position != -1){
+                dinosaurs[index] = dino.toUpperCase();
+            }
+        }
+
+        $("p").text(dinosaurs.join(" --- "));
+    }
+
+    function searchAndStore(searchTerm) {
+        var matches = [];
+
+        for (var index = 0; index < dinosaurs.length; index++) {
+            var dino = dinosaurs[index];
+
+            var position = dino.indexOf(searchTerm);
+
+            if (position != -1) {
+                matches.push(index);
+            }
+        }
+
+        $("p").text(matches.join(" * "));
+    }
+
+    function forLoop(searchTerm) {
+        var indexOfMatch = -1;
+
+        for(var index = 0; index < dinosaurs.length; index++) {
+            var dino = dinosaurs[index];
+
+            var position = dino.indexOf(searchTerm);
+
+            if (position != -1) {
+                indexOfMatch = index;
+                break;
+            }
+        }
+
+        $("p").text(indexOfMatch != -1 ? "Match found at " + indexOfMatch : "No match found");
+    }
+
+
+    function whileLoop(searchTerm) {
+        var found = false;
+        var index = 0;
+
+        while (!found && index < dinosaurs.length) {
+            var dino = dinosaurs[index];
+
+            var position = dino.indexOf(searchTerm);
+
+            if (position != -1) {
+                found = true;
+            } else {
+                index++;
+            }
+
+        }
+
+        $("p").text(found ? "Match found at " + index : "No match found");
+
+    }
+
+    function init() {
+        $("button").click(runSearch);
+    }
+
+    function runSearch() {
+        //var userInput = $("#search").val();
+        useComparator();
+    }
+
+    $(init);
+</script>
+</html>
