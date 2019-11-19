@@ -18,15 +18,31 @@
 <script>
     var dinosaurs = ["diplodocus", "Barney", "velociraptor", "micropachycephalosaurus"];
 
+    // Use a comparator to sort the array
     function useComparator() {
+        // Give the comparator function to the array's sort method
         dinosaurs.sort(compareDinosaurs);
 
+        // Put the array in the paragraph
         $("p").text(dinosaurs.join(" /// "));
     }
 
 
-    function compareDinosaurs(leftDino, rightDino)
-    {
+    /**
+     * A comparator method. Can be used by JavaScript to sort
+     * an array.
+     *
+     * Takes two strings (dinosaurs) and compares their lengths.
+     * If the left one is shorter than the right one, return 1.
+     * If the right one is shorter than the left one, return -1.
+     * If their lengths are the same, return 0.
+     *
+     * @param leftDino
+     * @param rightDino
+     * @returns {number}
+     */
+    function compareDinosaurs(leftDino, rightDino) {
+
         if (leftDino.length < rightDino.length) {
             return 1;
         } else if (rightDino.length < leftDino.length) {
@@ -37,84 +53,140 @@
     }
 
 
+    /**
+     * Manually sort an array by swapping elements that are out of order.
+     */
     function bubbleSort() {
+        // Loop control variable
         var isSorted = false;
 
+        // Continue looping while the array is not sorted
         while (!isSorted) {
+            // Assume that it's now sorted
             isSorted = true;
 
-            for (var index = 0; index < dinosaurs.length - 1; index++){
+            // Loop over all the elements, stopping one short of the end
+            for (var index = 0; index < dinosaurs.length - 1; index++) {
+                // Get the element at index
                 var leftDino = dinosaurs[index];
+                // Get its right neighbor (index + 1)
                 var rightDino = dinosaurs[index + 1];
 
+                // Is the length of the left string shorter than the right string?
                 if (leftDino.length < rightDino.length) {
+                    // They're out of order, so swap them
+                    // Put the right string into the array at index
                     dinosaurs[index] = rightDino;
+                    // Put the left string into the array at index + 1
                     dinosaurs[index + 1] = leftDino;
+                    // If a pair was out of order, we proved the array isn't sorted yet
                     isSorted = false;
                 }
             }
         }
 
+        // The sort is complete
+        // Add the array to the paragraph
         $("p").text(dinosaurs.join(" @@@ "));
     }
 
+    // Search the array for the string in the variable
     function alterInPlace(searchTerm) {
-        for(var index = 0; index < dinosaurs.length; index++) {
+        // Loop over the array
+        for (var index = 0; index < dinosaurs.length; index++) {
+            // Get one string out of the array into a temp variable
             var dino = dinosaurs[index];
-
+            // What is the position of the search string in the
+            // temp variable
             var position = dino.indexOf(searchTerm);
 
-            if (position != -1){
+            // If the position is -1, the search string didn't match
+            // within the temp variable
+            // If it's anything other than -1, the search string was
+            // found
+            if (position != -1) {
+                // Put an uppercase version of the string back in
+                // the original's index
                 dinosaurs[index] = dino.toUpperCase();
             }
         }
 
+        // Add the array to the paragraph
         $("p").text(dinosaurs.join(" --- "));
     }
 
     function searchAndStore(searchTerm) {
+        // Create an empty array to hold any matches
         var matches = [];
 
+        // Loop over the array
         for (var index = 0; index < dinosaurs.length; index++) {
+            // Get one string out of the array into a temp variable
             var dino = dinosaurs[index];
-
+            // What is the position of the search string in the
+            // temp variable
             var position = dino.indexOf(searchTerm);
 
+            // If the position is -1, the search string didn't match
+            // within the temp variable
+            // If it's anything other than -1, the search string was
+            // found
             if (position != -1) {
                 matches.push(index);
             }
         }
 
+        // Add the array to the paragraph
         $("p").text(matches.join(" * "));
     }
 
     function forLoop(searchTerm) {
         var indexOfMatch = -1;
 
-        for(var index = 0; index < dinosaurs.length; index++) {
+        // Loop over the array
+        for (var index = 0; index < dinosaurs.length; index++) {
+            // Get one string out of the array into a temp variable
             var dino = dinosaurs[index];
-
+            // What is the position of the search string in the
+            // temp variable
             var position = dino.indexOf(searchTerm);
 
+            // If the position is -1, the search string didn't match
+            // within the temp variable
+            // If it's anything other than -1, the search string was
+            // found
             if (position != -1) {
                 indexOfMatch = index;
                 break;
             }
         }
 
+        // Add the array to the paragraph
         $("p").text(indexOfMatch != -1 ? "Match found at " + indexOfMatch : "No match found");
     }
 
 
+    /**
+     * Use a while loop to search an array
+     * @param searchTerm
+     */
     function whileLoop(searchTerm) {
+        // Continue looping while search term not found
         var found = false;
+        // Continue looping while index is less than the array's length
         var index = 0;
 
         while (!found && index < dinosaurs.length) {
+            // Get one string out of the array into a temp variable
             var dino = dinosaurs[index];
-
+            // What is the position of the search string in the
+            // temp variable
             var position = dino.indexOf(searchTerm);
 
+            // If the position is -1, the search string didn't match
+            // within the temp variable
+            // If it's anything other than -1, the search string was
+            // found
             if (position != -1) {
                 found = true;
             } else {
@@ -123,6 +195,7 @@
 
         }
 
+        // Add the array to the paragraph
         $("p").text(found ? "Match found at " + index : "No match found");
 
     }

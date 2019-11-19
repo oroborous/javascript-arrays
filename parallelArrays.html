@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallel Arrays</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: honeydew;
+            font-family: Antonio;
+            font-size: 32px;
+        }
+        table {
+            margin: auto auto;
+        }
+        tr:nth-child(even) {
+            background-color: green;
+        }
+        td:first-child {
+            text-align: left;
+            padding-left: 10px;
+        }
+        button {
+            font-family: Antonio;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Course Name</th>
+            <th>Credits</th>
+        </tr>
+    </table>
+    <button id="sortName">Sort By Course Name</button>
+    <button id="sortCredits">Sort By Credits</button>
+    <button id="reset">Reset</button>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    var courses = ["Intro to Web Dev",
+        ".Net Web Development",
+        "Java Programming",
+        "Database Concepts and SQL",
+        "Web Server Administration",
+        "Employment Success",
+        "JavaScript 2"]
+    var credits = [2, 4, 3, 3, 2, 1, 4];
+
+    function sortByCourseName() {
+        courses.sort();
+
+        printSchedule();
+    }
+
+    function sortByCredits() {
+        credits.sort();
+
+        printSchedule();
+    }
+
+    function printSchedule() {
+        $(".schedule").remove();
+
+        for (var i = 0; i < courses.length; i++) {
+            var name = courses[i];
+            var cred = credits[i];
+            createRowInTable(name, cred);
+        }
+    }
+
+    function createRowInTable(courseName, credits) {
+        var row = $("<tr>").addClass("schedule");
+        row.append($("<td>").text(courseName));
+        row.append($("<td>").text(credits));
+        $("table").append(row);
+    }
+
+    function reset() {
+        location.reload();
+    }
+
+    $(function() {
+       $("#sortName").click(sortByCourseName);
+       $("#sortCredits").click(sortByCredits);
+       $("#reset").click(reset);
+       printSchedule();
+    });
+
+</script>
+</html>
