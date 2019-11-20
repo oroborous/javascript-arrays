@@ -48,16 +48,81 @@
         "JavaScript 2"]
     var credits = [2, 4, 3, 3, 2, 1, 4];
 
+
+
     function sortByCourseName() {
-        courses.sort();
+        var isSorted = false;
+
+        while (!isSorted) {
+            isSorted = true;
+
+            for (var i = 0; i < courses.length - 1; i++){
+                var leftCourse = courses[i];
+                var rightCourse = courses[i+1];
+
+                if (leftCourse > rightCourse) {
+                    // swap
+                    courses[i+1] = leftCourse;
+                    courses[i] = rightCourse;
+                    isSorted = false;
+
+                    // also swap credits
+                    var leftCredits = credits[i];
+                    var rightCredits = credits[i+1];
+                    credits[i+1] = leftCredits;
+                    credits[i] = rightCredits;
+                }
+            }
+
+        }
 
         printSchedule();
     }
 
-    function sortByCredits() {
-        credits.sort();
+    var iwd = ["Intro to Web Dev", 2];
+    var java = ["Java Programming", 3];
+    var db = ["Database Concepts and SQL", 3];
+    var net = [".Net Web Development", 4];
 
-        printSchedule();
+    var catalog = [db, iwd, net, java];
+
+
+    function sortByCredits() {
+        var isSorted = false;
+
+        while (!isSorted) {
+            isSorted = true;
+
+            for (var i = 0; i < catalog.length - 1; i++) {
+                var leftArray = catalog[i];
+                var rightArray = catalog[i+1];
+
+                var leftCredits = leftArray[1];
+                var rightCredits = rightArray[1];
+
+                if (rightCredits < leftCredits) {
+                    catalog[i] = rightArray;
+                    catalog[i+1] = leftArray;
+                    isSorted = false;
+                }
+            }
+        }
+
+        var es = ["Employment Success", 1];
+        catalog.push(es);
+
+        printCatalog();
+    }
+
+    function printCatalog() {
+        $(".schedule").remove();
+
+        for (var i = 0; i < catalog.length; i++) {
+            var courseInfo = catalog[i];
+            var name = courseInfo[0];
+            var cred = courseInfo[1];
+            createRowInTable(name, cred);
+        }
     }
 
     function printSchedule() {
@@ -72,8 +137,10 @@
 
     function createRowInTable(courseName, credits) {
         var row = $("<tr>").addClass("schedule");
-        row.append($("<td>").text(courseName));
-        row.append($("<td>").text(credits));
+        var cell1 = $("<td>").text(courseName);
+        var cell2 = $("<td>").text(credits);
+        row.append(cell1);
+        row.append(cell2);
         $("table").append(row);
     }
 
@@ -86,6 +153,17 @@
        $("#sortCredits").click(sortByCredits);
        $("#reset").click(reset);
        printSchedule();
+
+       for (var row = 0; row < catalog.length; row++) {
+           // var aLittleArray = catalog[row];
+
+           for (var col = 0; col < catalog[row].length; col++) {
+               console.log(catalog[row][col]);
+               //console.log(aLittleArray[col]);
+
+           }
+       }
+
     });
 
 </script>
