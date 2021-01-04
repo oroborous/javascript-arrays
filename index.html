@@ -16,7 +16,7 @@
 
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <script>
-    var dinosaurs = ["diplodocus", "Barney", "velociraptor", "micropachycephalosaurus"];
+    let dinosaurs = ["diplodocus", "Barney", "velociraptor", "micropachycephalosaurus"];
 
     // Use a comparator to sort the array
     function useComparator() {
@@ -58,7 +58,7 @@
      */
     function bubbleSort() {
         // Loop control variable
-        var isSorted = false;
+        let isSorted = false;
 
         // Continue looping while the array is not sorted
         while (!isSorted) {
@@ -66,11 +66,11 @@
             isSorted = true;
 
             // Loop over all the elements, stopping one short of the end
-            for (var index = 0; index < dinosaurs.length - 1; index++) {
+            for (let index = 0; index < dinosaurs.length - 1; index++) {
                 // Get the element at index
-                var leftDino = dinosaurs[index];
+                let leftDino = dinosaurs[index];
                 // Get its right neighbor (index + 1)
-                var rightDino = dinosaurs[index + 1];
+                let rightDino = dinosaurs[index + 1];
 
                 // Is the length of the left string shorter than the right string?
                 if (leftDino.length < rightDino.length) {
@@ -93,12 +93,12 @@
     // Search the array for the string in the variable
     function alterInPlace(searchTerm) {
         // Loop over the array
-        for (var index = 0; index < dinosaurs.length; index++) {
+        for (let index = 0; index < dinosaurs.length; index++) {
             // Get one string out of the array into a temp variable
-            var dino = dinosaurs[index];
+            let dino = dinosaurs[index];
             // What is the position of the search string in the
             // temp variable
-            var position = dino.indexOf(searchTerm);
+            let position = dino.indexOf(searchTerm);
 
             // If the position is -1, the search string didn't match
             // within the temp variable
@@ -117,15 +117,15 @@
 
     function searchAndStore(searchTerm) {
         // Create an empty array to hold any matches
-        var matches = [];
+        let matches = [];
 
         // Loop over the array
-        for (var index = 0; index < dinosaurs.length; index++) {
+        for (let index = 0; index < dinosaurs.length; index++) {
             // Get one string out of the array into a temp variable
-            var dino = dinosaurs[index];
+            let dino = dinosaurs[index];
             // What is the position of the search string in the
             // temp variable
-            var position = dino.indexOf(searchTerm);
+            let position = dino.indexOf(searchTerm);
 
             // If the position is -1, the search string didn't match
             // within the temp variable
@@ -141,15 +141,15 @@
     }
 
     function forLoop(searchTerm) {
-        var indexOfMatch = -1;
+        let indexOfMatch = -1;
 
         // Loop over the array
-        for (var index = 0; index < dinosaurs.length; index++) {
+        for (let index = 0; index < dinosaurs.length; index++) {
             // Get one string out of the array into a temp variable
-            var dino = dinosaurs[index];
+            let dino = dinosaurs[index];
             // What is the position of the search string in the
             // temp variable
-            var position = dino.indexOf(searchTerm);
+            let position = dino.indexOf(searchTerm);
 
             // If the position is -1, the search string didn't match
             // within the temp variable
@@ -172,16 +172,16 @@
      */
     function whileLoop(searchTerm) {
         // Continue looping while search term not found
-        var found = false;
+        let found = false;
         // Continue looping while index is less than the array's length
-        var index = 0;
+        let index = 0;
 
         while (!found && index < dinosaurs.length) {
             // Get one string out of the array into a temp variable
-            var dino = dinosaurs[index];
+            let dino = dinosaurs[index];
             // What is the position of the search string in the
             // temp variable
-            var position = dino.indexOf(searchTerm);
+            let position = dino.indexOf(searchTerm);
 
             // If the position is -1, the search string didn't match
             // within the temp variable
@@ -205,7 +205,7 @@
     }
 
     function runSearch() {
-        //var userInput = $("#search").val();
+        //let userInput = $("#search").val();
         useComparator();
     }
 

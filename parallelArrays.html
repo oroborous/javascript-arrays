@@ -56,9 +56,9 @@
         while (!isSorted) {
             isSorted = true;
 
-            for (var i = 0; i < courses.length - 1; i++){
-                var leftCourse = courses[i];
-                var rightCourse = courses[i+1];
+            for (let i = 0; i < courses.length - 1; i++){
+                let leftCourse = courses[i];
+                let rightCourse = courses[i+1];
 
                 if (leftCourse > rightCourse) {
                     // swap
@@ -67,8 +67,8 @@
                     isSorted = false;
 
                     // also swap credits
-                    var leftCredits = credits[i];
-                    var rightCredits = credits[i+1];
+                    let leftCredits = credits[i];
+                    let rightCredits = credits[i+1];
                     credits[i+1] = leftCredits;
                     credits[i] = rightCredits;
                 }
@@ -79,26 +79,26 @@
         printSchedule();
     }
 
-    var iwd = ["Intro to Web Dev", 2];
-    var java = ["Java Programming", 3];
-    var db = ["Database Concepts and SQL", 3];
-    var net = [".Net Web Development", 4];
+    let iwd = ["Intro to Web Dev", 2];
+    let java = ["Java Programming", 3];
+    let db = ["Database Concepts and SQL", 3];
+    let net = [".Net Web Development", 4];
 
-    var catalog = [db, iwd, net, java];
+    let catalog = [db, iwd, net, java];
 
 
     function sortByCredits() {
-        var isSorted = false;
+        let isSorted = false;
 
         while (!isSorted) {
             isSorted = true;
 
-            for (var i = 0; i < catalog.length - 1; i++) {
-                var leftArray = catalog[i];
-                var rightArray = catalog[i+1];
+            for (let i = 0; i < catalog.length - 1; i++) {
+                let leftArray = catalog[i];
+                let rightArray = catalog[i+1];
 
-                var leftCredits = leftArray[1];
-                var rightCredits = rightArray[1];
+                let leftCredits = leftArray[1];
+                let rightCredits = rightArray[1];
 
                 if (rightCredits < leftCredits) {
                     catalog[i] = rightArray;
@@ -108,7 +108,7 @@
             }
         }
 
-        var es = ["Employment Success", 1];
+        let es = ["Employment Success", 1];
         catalog.push(es);
 
         printCatalog();
@@ -117,10 +117,10 @@
     function printCatalog() {
         $(".schedule").remove();
 
-        for (var i = 0; i < catalog.length; i++) {
-            var courseInfo = catalog[i];
-            var name = courseInfo[0];
-            var cred = courseInfo[1];
+        for (let i = 0; i < catalog.length; i++) {
+            let courseInfo = catalog[i];
+            let name = courseInfo[0];
+            let cred = courseInfo[1];
             createRowInTable(name, cred);
         }
     }
@@ -128,17 +128,17 @@
     function printSchedule() {
         $(".schedule").remove();
 
-        for (var i = 0; i < courses.length; i++) {
-            var name = courses[i];
-            var cred = credits[i];
+        for (let i = 0; i < courses.length; i++) {
+            let name = courses[i];
+            let cred = credits[i];
             createRowInTable(name, cred);
         }
     }
 
     function createRowInTable(courseName, credits) {
-        var row = $("<tr>").addClass("schedule");
-        var cell1 = $("<td>").text(courseName);
-        var cell2 = $("<td>").text(credits);
+        let row = $("<tr>").addClass("schedule");
+        let cell1 = $("<td>").text(courseName);
+        let cell2 = $("<td>").text(credits);
         row.append(cell1);
         row.append(cell2);
         $("table").append(row);
@@ -154,10 +154,10 @@
        $("#reset").click(reset);
        printSchedule();
 
-       for (var row = 0; row < catalog.length; row++) {
-           // var aLittleArray = catalog[row];
+       for (let row = 0; row < catalog.length; row++) {
+           // let aLittleArray = catalog[row];
 
-           for (var col = 0; col < catalog[row].length; col++) {
+           for (let col = 0; col < catalog[row].length; col++) {
                console.log(catalog[row][col]);
                //console.log(aLittleArray[col]);
 

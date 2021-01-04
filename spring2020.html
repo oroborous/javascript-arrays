@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Arrays: Search and Sort</title>
+</head>
+<body>
+Search the array <input type="text" id="searchTerm">
+<br/>
+<button>Search!</button>
+<p id="results"></p>
+</body>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script>
+    let legoPeople = [
+        "football player",
+        "firefighter",
+        "best star wars pilot ever",
+        "batman"
+    ];
+
+    $(init);
+
+    function init() {
+        $("button").click(searchAndFindAll);
+    }
+
+    function searchAndFindFirst() {
+        let matchFound = false;
+
+        for(let i = 0; i < legoPeople.length; i++)
+        {
+            let aLegoPerson = legoPeople[i];
+
+            if (aLegoPerson.length > 130) {
+                $("#results").text("Match found at index " + i + ": " + aLegoPerson);
+                matchFound = true;
+                break;
+            }
+        }
+
+        if(matchFound === false) {
+            $("#results").text("No match found");
+        }
+    }
+
+    function searchAndFindAll() {
+        let searchTerm = $("#searchTerm").val();
+
+        let matchingLegoPeople = [];
+
+        for(let i = 0; i < legoPeople.length; i++)
+        {
+            let aLegoPerson = legoPeople[i];
+
+            if (aLegoPerson.indexOf(searchTerm) != -1) {
+                matchingLegoPeople.push(aLegoPerson);
+            }
+        }
+
+        if (matchingLegoPeople.length == 0) {
+            $("#results").text("No match found");
+        } else {
+            $("#results").text(matchingLegoPeople.join());
+        }
+    }
+
+    function compareLegoFigures(lego1, lego2)
+    {
+        let lengthOfLego1 = lego1.length;
+        let lengthOfLego2 = lego2.length;
+
+        if (lengthOfLego1 < lengthOfLego2) {
+            // in order already
+            return -1;
+        }
+        if (lengthOfLego1 > lengthOfLego2) {
+            // out of order and need to be swapped
+            return 1;
+        }
+
+        // doesn't matter, they're the same
+        return 0;
+    }
+
+
+</script>
+
+</html>
